@@ -1,6 +1,7 @@
 package br.com.francisco.taskbackend.controller;
 
 import java.util.List;
+import java.util.Objects;
 
 import br.com.francisco.taskbackend.model.Task;
 import br.com.francisco.taskbackend.repo.TaskRepo;
@@ -29,7 +30,7 @@ public class TaskController {
 	
 	@PostMapping
 	public ResponseEntity<Task> save(@RequestBody Task todo) throws ValidationException {
-		if(todo.getTask() == null || todo.getTask() == "") {
+		if(todo.getTask() == null || Objects.equals(todo.getTask(), "")) {
 			throw new ValidationException("Fill the task description");
 		}
 		if(todo.getDueDate() == null) {
