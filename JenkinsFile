@@ -51,7 +51,7 @@ pipeline{
                 }
             }
         }
-        stage('Functional Test'){
+        stage('Teste Funcional'){
             steps{
                 dir('functional-test') {
                 git credentialsId: 'GithubID', url: 'https://github.com/Franciscoflh/functional-tests'
@@ -63,6 +63,14 @@ pipeline{
             steps{
                 bat 'docker-compose build'
                 bat 'docker-compose up -d'
+            }
+        }
+        stage('Health Check'){
+            steps{
+                sleep(9)
+                dir('functional-test') {
+                bat 'mvn verify'
+                }
             }
         }
     }
