@@ -6,12 +6,12 @@ pipeline{
                 bat 'mvn clean package -DskipTests=true'
             }
         }
-        stage('Construindo Testes Unitários'){
+        stage('Construindo Testes Unitarios'){
             steps{
                 bat 'mvn test'
             }
         }
-        stage('Análise do Sonar'){
+        stage('Analise do Sonar'){
             environment {
                 scannerHome = tool 'SONAR_SCANNER'
             }
